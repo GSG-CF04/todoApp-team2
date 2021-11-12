@@ -1,0 +1,95 @@
+/* 
+---------------------------
+Table Of Content:
+---------------------------
+1. Mobile First
+---------------------------
+    1-1 Fonts 
+    1-2 General Style
+    1-3 Logo Style 
+    1-4 Image Style
+    1-5 Text Style
+    1-6 Button Style
+*/
+
+
+/* --------------- 1-1 Fonts --------------- */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap%27');
+
+/* --------------- 1-2 General Style --------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f2f2f2;
+}
+
+
+/* --------------- 1-3 Logo Style --------------- */
+
+.logo {
+    margin: 10px auto 3em 1em;
+    width: 23%;
+}
+
+
+/* --------------- 1-4 Image Style --------------- */
+
+.header-image {
+    display: block;
+    width: 100%;
+    margin: 4em 0em 2em auto;
+}
+
+
+/* --------------- 1-5 Text Style --------------- */
+
+.header-title {
+    font-size: 39px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    margin-bottom: 5px;
+    color: #17133c;
+}
+
+.header-paragraph {
+    font-size: 26px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    line-height: 35px;
+    text-align: center;
+    color: #17133c;
+}
+
+span {
+    font-size: 32px;
+}
+
+.texts {
+    margin-top: 40px;
+}
+
+
+/* --------------- 1-6 Button Style --------------- */
+
+.start-btn {
+    background: #17133c;
+    display: block;
+    color: #e2e2e2;
+    font-size: 23px;
+    margin: 22px auto 17px auto;
+    border-radius: 15%;
+    width: 150px;
+    height: 53px;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    margin-top: 40px;
+}
+
+.start-btn:hover {
+    background-color: #17133cdc;
+}
