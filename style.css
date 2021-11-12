@@ -10,6 +10,11 @@ Table Of Content:
     1-4 Image Style
     1-5 Text Style
     1-6 Button Style
+---------------------------
+2. Responsive
+---------------------------
+    2-1 Tablet Size
+    2-2 Desktop Size
 */
 
 
@@ -92,4 +97,81 @@ span {
 
 .start-btn:hover {
     background-color: #17133cdc;
+}
+
+
+/* --------------- 2-1 Tablet Size --------------- */
+
+@media (min-width:768px) and (max-width:1023px) {
+    .header-image {
+        position: absolute;
+        width: 55%;
+        margin-left: 352px;
+        margin-top: 89px;
+    }
+    .texts {
+        position: absolute;
+        font-size: 20px;
+        width: 45%;
+        margin: 190px 20px;
+        background: none;
+    }
+    p {
+        display: inline;
+        margin-left: 8%;
+    }
+    .header-title {
+        font-size: 35px;
+    }
+    .header-paragraph {
+        font-size: 18px;
+    }
+    .start-btn {
+        margin: 0 auto;
+        padding: 0;
+        width: 40%;
+        height: 45px;
+        font-size: 23px;
+        line-height: 45px;
+        text-align: center;
+        margin-top: 15px;
+    }
+    .logo {
+        display: inline;
+        width: 8%;
+        margin: 10px;
+    }
+}
+
+
+/* --------------- 2-2 Desktop Size --------------- */
+
+@media (min-width:1023px) {
+    .header-image {
+        position: absolute;
+        width: 50%;
+        margin-left: 700px;
+        margin-top: 40px;
+    }
+    .texts {
+        position: absolute;
+        width: 40%;
+        margin-top: 220px;
+        margin-left: 90px;
+    }
+    .header-title {
+        font-size: 65px;
+    }
+    .header-paragraph {
+        font-size: 29px;
+        margin-top: 15px;
+    }
+    .logo {
+        display: inline;
+        width: 6%;
+        margin: 20px;
+    }
+    .start-btn {
+        margin-top: 25px;
+    }
 }
