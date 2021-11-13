@@ -11,7 +11,100 @@
 
 <body>
 
+    <header>
+        <img class="logo" src="../assets/imgs/logo.svg" alt="Logo">
+        <img class="sun" src="../assets/imgs/sun.png" alt="Sun image">
+    </header>
+
+    <main>
+
+        <!-- Main tile Section -->
+        <section class="main-tile">
+            <p class="main-text">Manage Your Time!</p>
+            <img class="calendar" src="../assets/imgs/icons8-schedule-50.png" alt="calendar Icon">
+        </section>
+        <!-- Progress Section -->
+        <div class="prog">
+            <p class="prog-text">Tasks to be done: </p>
+            <img class="prog-img" src="../assets/imgs/circle.png" alt="progress Icon">
+            <p class="remain"></p>
+        </div>
+        <!-- All Tasks -->
+        <section id="all-screen"></section>
+        <!-- Finished Task -->
+        <section id="done-screen"> </section>
+        <!-- Add Modal Box Section -->
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <p class="modal-title">Write Your Task</p>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form action="#">
+                    <input type="text" id="task" class="task">
+                    <select id="pri" class="options">
+                        <option value="urgent">urgent</option>
+                        <option value="important">important</option>
+                        <option value="lessImportant">Less important</option>
+                    </select>
+                    <input id="button" type="submit">
+                </form>
+            </div>
+        </div>
+        <!-- Edit Modal Box Section -->
+        <div class="modal" id="edit-modal">
+            <div class="modal-header">
+                <p class="modal-title">Edit Your Task</p>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form action="#">
+
+                    <input type="text" id="edit-task" class="task">
+
+                    <select id="edit-pri" class="options">
+
+                        <option id="urgent" value="urgent" selected>urgent</option>
+                        <option id="important" value="important">important</option>
+                        <option id="lessImportant" value="lessImportant">Less important</option>
+
+                    </select>
+
+                    <input id="update-button" type="submit" value="Update">
+
+                </form>
+            </div>
+        </div>
+        <!-- Overlay -->
+        <div id="overlay"></div>
+    </main>
+    <!-- Footer -->
+    <footer>
+        <div id="container">
+            <div class="inner-container">
+                <div class="toggle">
+                    <p>Done</p>
+                </div>
+                <div class="toggle">
+                    <p>All</p>
+                </div>
+            </div>
+            <div class="inner-container" id='toggle-container'>
+                <div class="toggle">
+                    <p>Done</p>
+                </div>
+                <div class="toggle">
+                    <p>All</p>
+                </div>
+            </div>
+        </div>
+
+        <button class="add-btn">+</button>
+    </footer>
+
+
     <script src="script.js"></script>
+
 </body>
 
 </html>

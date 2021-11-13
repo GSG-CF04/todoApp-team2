@@ -1,0 +1,340 @@
+/* --------------------- Fonts  ----------------------*/
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+
+/* --------------------- General Style ----------------------*/
+
+* {
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+#overlay {
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* --------------------- Header Style ----------------------*/
+
+header {
+    position: sticky;
+    top: 0px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: #f5f5f5;
+}
+
+.sun {
+    width: 30px;
+    margin: 15px 20px;
+}
+
+.logo {
+    width: 60px;
+    margin: 15px 20px;
+}
+
+
+/* --------------------- .main-tile Section Style ----------------------*/
+
+.main-tile {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 15px;
+    background-color: #17133c;
+    padding: 30px 20px;
+    margin-top: 20px;
+    box-shadow: 2px 2px 6px 0px #c0c0c0;
+    color: #e2e2e2;
+}
+
+.main-text {
+    font-size: 22px;
+    font-weight: bold;
+    flex-grow: 2;
+}
+
+.calendar {
+    width: 23px;
+    flex-grow: 4;
+    object-fit: contain;
+}
+
+
+/* --------------------- .prog Section Style ----------------------*/
+
+.prog {
+    display: flex;
+    width: 80%;
+    margin: 15px auto;
+    justify-content: space-evenly;
+}
+
+.prog-text,
+.remain {
+    text-align: center;
+    font-size: 20px;
+}
+
+.prog-img {
+    width: 20px;
+    object-fit: contain;
+}
+
+
+/* --------------------- #background Section Style ----------------------*/
+
+#background {
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+/* --------------------- .task-tiles Section Style ----------------------*/
+
+#all-screen,
+#done-screen {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-row-gap: 10px;
+}
+
+.tile,
+.checked-tile {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 15px;
+    background-color: white;
+    padding: 20px 20px;
+    margin-top: 20px;
+    box-shadow: 2px 2px 6px 0px #c0c0c0;
+}
+
+.check,
+.edit,
+.delete,
+.check-done {
+    width: 17px;
+    object-fit: contain;
+}
+
+.hide {
+    display: none !important;
+}
+
+.left img {
+    display: inline;
+}
+
+.task-text {
+    overflow: hidden;
+    max-width: 143px;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+}
+
+
+/* --------------------- Footer Style "Add btn & toggle"  ----------------------*/
+
+footer {
+    display: flex;
+    position: fixed;
+    bottom: 0px;
+    padding: 10px 20px;
+    right: 0px;
+    width: 100%;
+    flex-direction: row;
+    background-color: #f5f5f5;
+}
+
+.add-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background: #17133c;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 36px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    transition: 0.3s;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.add-btn:focus {
+    transform: scale(1.1);
+    transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+
+a {
+    text-decoration: none;
+    opacity: 0.6;
+    padding: 60px;
+    font-weight: bolder;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    font-size: 1.4em;
+}
+
+a:hover {
+    opacity: 1;
+}
+
+#container {
+    width: 230px;
+    height: 36px;
+    margin: auto;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.inner-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: inherit;
+    height: inherit;
+    text-transform: uppercase;
+    font-size: 0.6em;
+    letter-spacing: 0.2em;
+}
+
+.inner-container:first-child {
+    background: #e9e9e9;
+    color: #a9a9a9;
+}
+
+.inner-container:nth-child(2) {
+    background: #17133c;
+    color: white;
+    clip-path: inset(0 50% 0 0);
+    transition: 0.3s cubic-bezier(0, 0, 0, 1);
+}
+
+.toggle {
+    width: 50%;
+    position: absolute;
+    height: inherit;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.toggle p {
+    margin: auto;
+    font-size: 15px;
+}
+
+.toggle:nth-child(1) {
+    right: 0;
+}
+
+
+/* --------------------- Modal Box Style ----------------------*/
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 200ms ease-in-out;
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 10;
+    background-color: #fff;
+    width: 600px;
+    max-width: 80%;
+    height: 185px;
+    display: none;
+}
+
+#modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-header {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.modal-header .close-btn {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-weight: bold;
+    font-size: 30px;
+    margin: 3px;
+}
+
+input.task {
+    width: 90%;
+    height: 33px;
+    display: inline-block;
+    margin: 10px 16px;
+    border: #17133c 1px solid;
+}
+
+input[type="submit"] {
+    width: 80px;
+    height: 36px;
+    border-radius: 15px;
+    background: #17133c;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 19px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    transition: 0.3s;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    float: right;
+    margin: 19px 7px;
+}
+
+.options {
+    border: #17133c 1px solid;
+    margin-left: 16px;
+}
+
+#urgent {
+    background-color: #f7241d9c;
+}
+
+#important {
+    background-color: #ea8c1c9c;
+}
+
+#lessImportant {
+    background-color: #0e9eeb9c;
+}
