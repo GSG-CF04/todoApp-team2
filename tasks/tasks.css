@@ -338,3 +338,73 @@ input[type="submit"] {
 #lessImportant {
     background-color: #0e9eeb9c;
 }
+
+
+/* --------------------- Tablet Size ----------------------*/
+
+@media (min-width: 768px) {
+    .main-tile {
+        height: 125px;
+        line-height: 65px;
+    }
+    .main-text {
+        flex-grow: 8;
+        font-size: 25px;
+        align-items: center;
+    }
+    .calendar {
+        flex-grow: 1;
+    }
+    .prog {
+        width: 40%;
+        justify-content: space-between;
+    }
+    footer {
+        justify-content: space-between;
+        padding: 10px 93px;
+    }
+    #container {
+        height: 45px;
+        line-height: 45px;
+        font-size: 30px;
+        margin-top: 3px;
+        margin-left: 0;
+    }
+    input[type="submit"] {
+        width: 100px;
+        height: 42px;
+        font-size: 21px;
+        margin: 14px 43px;
+    }
+}
+
+
+/* --------------------- Desktop Size ----------------------*/
+
+@media (min-width: 1024px) {
+    .prog {
+        width: 30%;
+        justify-content: space-between;
+    }
+    footer {
+        padding: 10px 145px;
+    }
+    .main-tile {
+        width: 65%;
+    }
+    .tile,
+    .checked-tile {
+        width: 90%;
+    }
+    #background {
+        width: 30%;
+        grid-area: background;
+    }
+    #all-screen,
+    #done-screen {
+        margin: 0 auto;
+        max-width: 65%;
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "background background";
+    }
+}
