@@ -328,3 +328,22 @@ function edit(value, storageKey, eleId) {
   }
 }
 
+//  add the background photo when no tasks 
+
+function background() {
+    let element = document.getElementById("background");
+    if (JSON.parse(localStorage.getItem("task")).length == 0 && element == null) {
+      let imageURL = "../assets/imgs/background.svg";
+  
+      let allScreen = document.getElementById("all-screen");
+      let image = document.createElement("img");
+      image.setAttribute("id", "background");
+      image.setAttribute("src", imageURL);
+  
+      allScreen.appendChild(image);
+    } else {
+      document.getElementById("background").remove();
+    }
+  }
+  
+  background();
