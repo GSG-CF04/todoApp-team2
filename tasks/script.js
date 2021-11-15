@@ -105,6 +105,261 @@ function add() {
   tile.appendChild(deleteImg);
 
 
-  
+  progressIndicator();
   closeFun();
+}
+
+// **** Retrieve data from localStorage (Show & Hide using the toggle) ****
+
+var toggle = document.getElementById("container");
+var toggleContainer = document.getElementById("toggle-container");
+var toggleNumber = false;
+
+if (toggleNumber == false) {
+  let allTasks = JSON.parse(localStorage.getItem("task"));
+
+  if (allTasks != null) {
+    for (i = 0; i < allTasks.length; i++) {
+      let tilesSection = document.querySelector("#all-screen");
+
+      let tile = document.createElement("section");
+      tile.setAttribute("class", "tile");
+      tile.setAttribute(`id`, `tile-${i}`);
+
+      let checkImg = document.createElement("img");
+      checkImg.setAttribute("class", "check");
+      checkImg.setAttribute("src", "../assets/imgs/check.png");
+      checkImg.setAttribute(
+        `onclick`,
+        `check('${allTasks[i][0]}' , 'task' , 'tile-${i}') `
+      );
+
+      let editImg = document.createElement("img");
+      editImg.setAttribute("class", "edit");
+      editImg.setAttribute("src", "../assets/imgs/edit.png");
+      editImg.setAttribute(
+        `onclick`,
+        `edit('${allTasks[i][0]}' , 'task' , 'tile-${i}') `
+      );
+
+      let deleteImg = document.createElement("img");
+      deleteImg.setAttribute("class", "delete");
+      deleteImg.setAttribute("src", "../assets/imgs/delete.png");
+      deleteImg.setAttribute(
+        `onclick`,
+        `del('${allTasks[i][0]}' , 'task' , 'tile-${i}') `
+      );
+
+      let p = document.createElement("p");
+      p.setAttribute("class", "task-text");
+
+      tilesSection.appendChild(tile);
+
+      switch (allTasks[i][1]) {
+        case "urgent":
+          tile.style.borderLeft = "#f7241d solid 3px";
+          break;
+        case "important":
+          tile.style.borderLeft = "#ea8c1c solid 3px";
+          break;
+        case "lessImportant":
+          tile.style.borderLeft = "#0e9eeb solid 3px";
+          break;
+      }
+
+      tile.appendChild(checkImg);
+      tile.appendChild(p);
+      p.textContent = `${allTasks[i][0]}`;
+      tile.appendChild(editImg);
+      tile.appendChild(deleteImg);
+    }
+  }
+}
+
+let doneTasks = JSON.parse(localStorage.getItem("done"));
+
+if (doneTasks != null) {
+  for (i = 0; i < doneTasks.length; i++) {
+    let tilesSection = document.querySelector("#done-screen");
+    tilesSection.setAttribute("class", "hide");
+
+    let checkedTile = document.createElement("section");
+    checkedTile.setAttribute("class", "checked-tile");
+    checkedTile.setAttribute(`id`, `checked-tile-${i}`);
+
+    let checkImg = document.createElement("img");
+    checkImg.setAttribute("class", "check-done");
+    checkImg.setAttribute("src", "../assets/imgs/check-done.png");
+    checkImg.setAttribute(
+      `onclick`,
+      `check('${doneTasks[i][0]}' , 'done' , 'checked-tile-${i}') `
+    );
+
+    let editImg = document.createElement("img");
+    editImg.setAttribute("class", "edit");
+    editImg.setAttribute("src", "../assets/imgs/edit.png");
+    editImg.setAttribute(
+      `onclick`,
+      `edit('${doneTasks[i][0]}' , 'done' , 'checked-tile-${i}') `
+    );
+
+    let deleteImg = document.createElement("img");
+    deleteImg.setAttribute("class", "delete");
+    deleteImg.setAttribute(
+      `onclick`,
+      `del('${doneTasks[i][0]}' , 'done' , 'checked-tile-${i}') `
+    );
+    deleteImg.setAttribute("src", "../assets/imgs/delete.png");
+
+    let p = document.createElement("p");
+    p.setAttribute("class", "task-text");
+
+    let delP = document.createElement("del");
+
+    tilesSection.appendChild(checkedTile);
+
+    checkedTile.style.borderLeft = "green solid 3px";
+    checkedTile.appendChild(checkImg);
+    checkedTile.appendChild(p);
+    p.appendChild(delP);
+    delP.textContent = `${doneTasks[i][0]}`;
+    checkedTile.appendChild(editImg);
+    checkedTile.appendChild(deleteImg);
+  }
+}
+
+// **** Toggle button function ****
+
+toggle.addEventListener("click", function () {
+  toggleNumber = !toggleNumber;
+  let allScr = document.querySelectorAll("#all-screen");
+  let doneScr = document.querySelectorAll("#done-screen");
+
+  if (toggleNumber) {
+    toggleContainer.style.clipPath = "inset(0 0 0 50%)";
+    toggleContainer.style.backgroundColor = "#17133c";
+
+    allScr[0].classList.toggle("hide");
+    doneScr[0].classList.toggle("hide");
+  } else {
+    toggleContainer.style.clipPath = "inset(0 50% 0 0)";
+    toggleContainer.style.backgroundColor = "#17133c";
+
+    doneScr[0].classList.toggle("hide");
+    allScr[0].classList.toggle("hide");
+  }
+  console.log(toggleNumber ? "done" : "all");
+});
+
+// **** delete specific task from localStorage & HTML tree ****
+
+function del(value, storageKey, eleId) {
+  let storage = JSON.parse(localStorage.getItem(storageKey));
+  let index = storage.findIndex((storage) => storage.includes(value));
+  let element = document.getElementById(eleId);
+
+  console.log(element);
+
+  if (index != null && index >= 0) {
+    storage.splice(index, 1);
+    localStorage.setItem(storageKey, JSON.stringify(storage));
+  }
+
+  element.remove();
+
+
+  progressIndicator();
+}
+
+//  **** Show progress indicator ****
+
+function progressIndicator() {
+  let tasksToBeDone = JSON.parse(localStorage.getItem("task")).length;
+  let doneTa =
+    JSON.parse(localStorage.getItem("done")) != null
+      ? JSON.parse(localStorage.getItem("done")).length
+      : 0;
+  let element = document.getElementsByClassName("remain")[0];
+
+  element.textContent = `${tasksToBeDone} / ${tasksToBeDone + doneTa}`;
+}
+
+// initialize progress indicator
+
+progressIndicator();
+
+// **** Edit Tasks in localStorage & HTML tree ****
+
+function edit(value, storageKey, eleId) {
+  let close = document.getElementsByClassName("close-btn")[1];
+  let modal = document.getElementById("edit-modal");
+  let update = document.getElementById("update-button");
+
+  let newTask = document.getElementById("edit-task");
+  let newPri = document.getElementById("edit-pri");
+
+  //   Show Edit modal box
+
+  modal.style.display = "block";
+
+  //   Retrieve old data
+  newTask.value = value;
+
+  // close the modal function
+  close.addEventListener("click", closeFun);
+
+  function closeFun() {
+    modal.style.display = "none";
+  }
+
+  // update data in local storage
+
+  update.addEventListener("click", updateFun);
+
+  function updateFun() {
+    let storage = JSON.parse(localStorage.getItem(storageKey));
+    let index = storage.findIndex((storage) => storage.includes(value));
+    let element = document.getElementById(eleId);
+
+    console.log(newTask);
+    console.log(newPri);
+
+    storage[index][0] = newTask.value;
+    storage[index][1] = newPri.value;
+
+    value = newTask.value;
+
+    localStorage.setItem(storageKey, JSON.stringify(storage));
+
+    // Rebuild elements in HTML tree
+
+    element.childNodes[0].setAttribute(
+      `onclick`,
+      `check('${newTask.value}' , '${storageKey}' , '${eleId}') `
+    ); // check
+    element.childNodes[1].textContent = newTask.value; // paragraph
+    element.childNodes[2].setAttribute(
+      `onclick`,
+      `edit('${newTask.value}' , '${storageKey}' , '${eleId}') `
+    ); // edit
+    element.childNodes[3].setAttribute(
+      `onclick`,
+      `del('${newTask.value}' , '${storageKey}' , '${eleId}') `
+    ); // delete
+
+    switch (newPri.value) {
+      case "urgent":
+        element.style.borderLeft = "#f7241d solid 3px";
+        break;
+      case "important":
+        element.style.borderLeft = "#ea8c1c solid 3px";
+        break;
+      case "lessImportant":
+        element.style.borderLeft = "#0e9eeb solid 3px";
+        break;
+    }
+
+    // close the madal box
+    closeFun();
+  }
 }
