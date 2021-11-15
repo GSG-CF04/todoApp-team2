@@ -269,3 +269,21 @@ function del(value, storageKey, eleId) {
 
     progressIndicator();
 }
+
+//  **** Show progress indicator ****
+
+function progressIndicator() {
+    let tasksToBeDone = JSON.parse(localStorage.getItem("task")).length;
+    let doneTa =
+        JSON.parse(localStorage.getItem("done")) != null ?
+        JSON.parse(localStorage.getItem("done")).length :
+        0;
+    let element = document.getElementsByClassName("remain")[0];
+
+    element.textContent = $ { tasksToBeDone }
+    / ${tasksToBeDone + doneTa};
+}
+
+// initialize progress indicator
+
+progressIndicator();
