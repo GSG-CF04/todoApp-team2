@@ -251,21 +251,80 @@ toggle.addEventListener("click", function() {
     console.log(toggleNumber ? "done" : "all");
 });
 
-// **** delete specific task from localStorage & HTML tree ****
 
-function del(value, storageKey, eleId) {
+// **** Edit Tasks in localStorage & HTML tree ****
+
+function edit(value, storageKey, eleId) {
+  let close = document.getElementsByClassName("close-btn")[1];
+  let modal = document.getElementById("edit-modal");
+  let update = document.getElementById("update-button");
+
+  let newTask = document.getElementById("edit-task");
+  let newPri = document.getElementById("edit-pri");
+
+  //   Show Edit modal box
+
+  modal.style.display = "block";
+
+  //   Retrieve old data
+  newTask.value = value;
+
+  // close the modal function
+  close.addEventListener("click", closeFun);
+
+  function closeFun() {
+    modal.style.display = "none";
+  }
+
+  // update data in local storage
+
+  update.addEventListener("click", updateFun);
+
+  function updateFun() {
     let storage = JSON.parse(localStorage.getItem(storageKey));
     let index = storage.findIndex((storage) => storage.includes(value));
     let element = document.getElementById(eleId);
 
-    console.log(element);
+    console.log(newTask);
+    console.log(newPri);
 
-    if (index != null && index >= 0) {
-        storage.splice(index, 1);
-        localStorage.setItem(storageKey, JSON.stringify(storage));
+    storage[index][0] = newTask.value;
+    storage[index][1] = newPri.value;
+
+    value = newTask.value;
+
+    localStorage.setItem(storageKey, JSON.stringify(storage));
+
+    // Rebuild elements in HTML tree
+
+    element.childNodes[0].setAttribute(
+      `onclick`,
+      `check('${newTask.value}' , '${storageKey}' , '${eleId}') `
+    ); // check
+    element.childNodes[1].textContent = newTask.value; // paragraph
+    element.childNodes[2].setAttribute(
+      `onclick`,
+      `edit('${newTask.value}' , '${storageKey}' , '${eleId}') `
+    ); // edit
+    element.childNodes[3].setAttribute(
+      `onclick`,
+      `del('${newTask.value}' , '${storageKey}' , '${eleId}') `
+    ); // delete
+
+    switch (newPri.value) {
+      case "urgent":
+        element.style.borderLeft = "#f7241d solid 3px";
+        break;
+      case "important":
+        element.style.borderLeft = "#ea8c1c solid 3px";
+        break;
+      case "lessImportant":
+        element.style.borderLeft = "#0e9eeb solid 3px";
+        break;
     }
 
-    element.remove();
-
-    progressIndicator();
+    // close the madal box
+    closeFun();
+  }
 }
+
