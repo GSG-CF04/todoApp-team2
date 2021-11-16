@@ -150,13 +150,13 @@ span {
     .header-image {
         position: absolute;
         width: 50%;
-        margin-left: 700px;
+        margin-left: 680px;
         margin-top: 40px;
     }
     .texts {
         position: absolute;
         width: 40%;
-        margin-top: 220px;
+        margin-top: 200px;
         margin-left: 90px;
     }
     .header-title {
