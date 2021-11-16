@@ -103,7 +103,8 @@ function add() {
     p.textContent = `${allTasks[i][0]}`;
     tile.appendChild(editImg);
     tile.appendChild(deleteImg);
-
+    background();
+    progressIndicator();
     closeFun();
 }
 
@@ -340,6 +341,7 @@ function del(value, storageKey, eleId) {
     }
 
     element.remove();
+    background();
  progressIndicator();
 }
 
@@ -510,7 +512,7 @@ function check(value, storageKey, eleId) {
       checkedTile.appendChild(editImg);
       checkedTile.appendChild(deleteImg);
     }
-  
+    background();
     progressIndicator();
   }
   
