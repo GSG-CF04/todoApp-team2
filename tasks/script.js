@@ -103,9 +103,9 @@ function add() {
     p.textContent = `${allTasks[i][0]}`;
     tile.appendChild(editImg);
     tile.appendChild(deleteImg);
-    background();
-    progressIndicator();
     closeFun();
+    progressIndicator();
+    background();
 }
 
 // **** Retrieve data from localStorage (Show & Hide using the toggle) ****
@@ -341,8 +341,8 @@ function del(value, storageKey, eleId) {
     }
 
     element.remove();
-    background();
  progressIndicator();
+ background();
 }
 
 
@@ -512,8 +512,8 @@ function check(value, storageKey, eleId) {
       checkedTile.appendChild(editImg);
       checkedTile.appendChild(deleteImg);
     }
-    background();
     progressIndicator();
+    background();
   }
   
 //  add the background photo when no tasks 
